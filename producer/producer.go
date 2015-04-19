@@ -28,9 +28,12 @@ func main() {
 	ndn.Register(face, "/hello", &key)
 
 	m := mux.New()
-	m.HandleFunc("/hello", func(face *ndn.Face, i *ndn.Interest) {
+	m.Use(mux.Logger)
+	m.Use(mux.Segmentor(10))
+	m.Use(mux.Cacher)
+	m.HandleFunc("/hello", func(w mux.DataSender, i *ndn.Interest) {
 		spew.Dump(i)
-		face.SendData(&ndn.Data{
+		w.SendData(&ndn.Data{
 			Name:    i.Name,
 			Content: []byte(time.Now().UTC().String()),
 		})
