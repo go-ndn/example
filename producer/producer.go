@@ -34,7 +34,7 @@ func main() {
 	m.HandleFunc("/hello", func(w mux.DataSender, i *ndn.Interest) {
 		spew.Dump(i)
 		w.SendData(&ndn.Data{
-			Name:    i.Name,
+			Name:    ndn.NewName("/hello"),
 			Content: []byte(time.Now().UTC().String()),
 		})
 	})
