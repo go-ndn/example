@@ -10,7 +10,8 @@ import (
 	"github.com/go-ndn/ndn"
 )
 
-func segmentFetcher(face *ndn.Face, s string) (content []byte) {
+func segmentFetcher(face *ndn.Face, s string) []byte {
+	var content []byte
 	var start int
 	segNum := make([]byte, 8)
 	base := ndn.NewName(s)
@@ -20,7 +21,7 @@ func segmentFetcher(face *ndn.Face, s string) (content []byte) {
 			Name: ndn.Name{Components: append(base.Components, segNum)},
 		})
 		if !ok {
-			return
+			return nil
 		}
 		content = append(content, d.Content...)
 		if len(d.Name.Components) > 0 &&
@@ -30,7 +31,7 @@ func segmentFetcher(face *ndn.Face, s string) (content []byte) {
 			break
 		}
 	}
-	return
+	return content
 }
 
 func main() {
