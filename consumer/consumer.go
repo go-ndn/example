@@ -18,5 +18,6 @@ func main() {
 	face := ndn.NewFace(conn, nil)
 	defer face.Close()
 
-	spew.Dump(mux.Assemble(face, ndn.NewName("/hello")))
+	f := mux.NewFetcher()
+	spew.Dump(f.Fetch(face, ndn.NewName("/hello")))
 }
