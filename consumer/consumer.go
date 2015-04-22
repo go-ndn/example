@@ -19,5 +19,6 @@ func main() {
 	defer face.Close()
 
 	f := mux.NewFetcher()
+	f.Use(mux.Cacher)
 	spew.Dump(f.Fetch(face, ndn.NewName("/hello")))
 }
