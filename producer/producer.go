@@ -25,7 +25,9 @@ func main() {
 	pem, _ := ioutil.ReadFile("key/default.pri")
 	key.DecodePrivateKey(pem)
 
-	ndn.Register(face, "/hello", &key)
+	ndn.SendControl(face, "rib", "register", &ndn.Parameters{
+		Name: ndn.NewName("/hello"),
+	}, &key)
 
 	m := mux.New()
 	m.Use(mux.Logger)
