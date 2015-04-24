@@ -20,5 +20,7 @@ func main() {
 
 	f := mux.NewFetcher()
 	f.Use(mux.Cacher)
+	f.Use(mux.Logger)
+	f.Use(mux.Assembler)
 	spew.Dump(f.Fetch(face, ndn.NewName("/hello")))
 }
