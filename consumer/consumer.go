@@ -19,6 +19,7 @@ func main() {
 	defer face.Close()
 
 	f := mux.NewFetcher()
+	f.Use(mux.SHA256Verifier)
 	f.Use(mux.Cacher)
 	f.Use(mux.Logger)
 	f.Use(mux.Assembler)
