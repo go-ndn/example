@@ -25,9 +25,14 @@ func main() {
 	pem, _ := ioutil.ReadFile("key/default.pri")
 	key.DecodePrivateKey(pem)
 
-	ndn.SendControl(face, "rib", "register", &ndn.Parameters{
-		Name: ndn.NewName("/hello"),
-	}, &key)
+	register := func(name string) {
+		ndn.SendControl(face, "rib", "register", &ndn.Parameters{
+			Name: ndn.NewName(name),
+		}, &key)
+	}
+
+	register("/hello")
+	register("/file")
 
 	m := mux.New()
 	m.Use(mux.Logger)
@@ -40,5 +45,6 @@ func main() {
 			Content: []byte(time.Now().UTC().String()),
 		})
 	})
+	m.Handle("/file", mux.FileServer("/etc"), mux.PrefixTrimmer("/file"))
 	m.Run(face, recv)
 }

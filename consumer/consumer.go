@@ -24,4 +24,5 @@ func main() {
 	f.Use(mux.Logger)
 	f.Use(mux.Assembler)
 	spew.Dump(f.Fetch(face, ndn.NewName("/hello")))
+	spew.Dump(f.Fetch(face, ndn.NewName("/file/machine-id")))
 }
