@@ -9,6 +9,7 @@ import (
 	"github.com/davecgh/go-spew/spew"
 	"github.com/go-ndn/mux"
 	"github.com/go-ndn/ndn"
+	"github.com/go-ndn/persist"
 )
 
 func main() {
@@ -34,10 +35,13 @@ func main() {
 	register("/hello")
 	register("/file")
 
+	cache, _ := persist.New("test.db")
+	defer cache.Close()
+
 	m := mux.New()
 	m.Use(mux.Logger)
 	m.Use(mux.Segmentor(10))
-	m.Use(mux.Cacher)
+	m.Use(persist.Cacher(cache))
 	m.HandleFunc("/hello", func(w mux.Sender, i *ndn.Interest) {
 		spew.Dump(i)
 		w.SendData(&ndn.Data{
