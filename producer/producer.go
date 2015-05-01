@@ -35,13 +35,10 @@ func main() {
 	register("/hello")
 	register("/file")
 
-	cache, _ := persist.New("test.db")
-	defer cache.Close()
-
 	m := mux.New()
 	m.Use(mux.Logger)
 	m.Use(mux.Segmentor(10))
-	m.Use(persist.Cacher(cache))
+	m.Use(persist.Cacher("test.db"))
 	m.HandleFunc("/hello", func(w mux.Sender, i *ndn.Interest) {
 		spew.Dump(i)
 		w.SendData(&ndn.Data{
