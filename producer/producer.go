@@ -40,7 +40,7 @@ func main() {
 	m.Use(mux.Segmentor(10))
 	m.Use(persist.Cacher("test.db"))
 	m.Use(mux.Cacher)
-	m.HandleFunc("/hello", func(w mux.Sender, i *ndn.Interest) {
+	m.HandleFunc("/hello", func(w ndn.Sender, i *ndn.Interest) {
 		spew.Dump(i)
 		w.SendData(&ndn.Data{
 			Name:    ndn.NewName("/hello"),
