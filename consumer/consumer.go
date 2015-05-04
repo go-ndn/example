@@ -7,6 +7,7 @@ import (
 	"github.com/davecgh/go-spew/spew"
 	"github.com/go-ndn/mux"
 	"github.com/go-ndn/ndn"
+	"github.com/go-ndn/tlv"
 )
 
 func main() {
@@ -23,6 +24,18 @@ func main() {
 	f.Use(mux.Cacher)
 	f.Use(mux.Logger)
 	f.Use(mux.Assembler)
-	spew.Dump(f.Fetch(face, ndn.NewName("/hello")))
-	spew.Dump(f.Fetch(face, ndn.NewName("/file/machine-id")))
+	var rib []ndn.RIBEntry
+	tlv.UnmarshalByte(f.Fetch(face,
+		&ndn.Interest{
+			Name: ndn.NewName("/localhost/nfd/rib/list"),
+			Selectors: ndn.Selectors{
+				MustBeFresh: true,
+			},
+		}),
+		&rib,
+		128,
+	)
+	spew.Dump(rib)
+	spew.Dump(f.Fetch(face, &ndn.Interest{Name: ndn.NewName("/hello")}))
+	spew.Dump(f.Fetch(face, &ndn.Interest{Name: ndn.NewName("/file/machine-id")}))
 }
