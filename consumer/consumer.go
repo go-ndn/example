@@ -27,7 +27,7 @@ func main() {
 	var rib []ndn.RIBEntry
 	tlv.UnmarshalByte(f.Fetch(face,
 		&ndn.Interest{
-			Name: ndn.NewName("/localhost/nfd/rib/list"),
+			Name: ndn.NewName("/localhop/nfd/rib/list"),
 			Selectors: ndn.Selectors{
 				MustBeFresh: true,
 			},
