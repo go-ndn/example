@@ -37,6 +37,7 @@ func main() {
 
 	m := mux.New()
 	m.Use(mux.Logger)
+	m.Use(mux.Gzipper)
 	m.Use(mux.AESEncryptor([]byte("example key 1234")))
 	m.Use(mux.Segmentor(10))
 	m.Use(persist.Cacher("test.db"))

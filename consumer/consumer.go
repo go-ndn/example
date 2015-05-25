@@ -38,6 +38,6 @@ func main() {
 	spew.Dump(rib)
 
 	dec := mux.AESDecryptor([]byte("example key 1234"))
-	spew.Dump(f.Fetch(face, &ndn.Interest{Name: ndn.NewName("/hello")}, dec))
-	spew.Dump(f.Fetch(face, &ndn.Interest{Name: ndn.NewName("/file/machine-id")}, dec))
+	spew.Dump(f.Fetch(face, &ndn.Interest{Name: ndn.NewName("/hello")}, dec, mux.Gunzipper))
+	spew.Dump(f.Fetch(face, &ndn.Interest{Name: ndn.NewName("/file/machine-id")}, dec, mux.Gunzipper))
 }
