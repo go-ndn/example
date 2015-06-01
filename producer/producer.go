@@ -6,7 +6,6 @@ import (
 	"net"
 	"time"
 
-	"github.com/davecgh/go-spew/spew"
 	"github.com/go-ndn/mux"
 	"github.com/go-ndn/ndn"
 	"github.com/go-ndn/persist"
@@ -43,7 +42,6 @@ func main() {
 	m.Use(persist.Cacher("test.db"))
 	m.Use(mux.Cacher)
 	m.HandleFunc("/hello", func(w ndn.Sender, i *ndn.Interest) {
-		spew.Dump(i)
 		w.SendData(&ndn.Data{
 			Name:    ndn.NewName("/hello"),
 			Content: []byte(time.Now().UTC().String()),
