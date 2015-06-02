@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
 	"net"
+	"os"
 	"time"
 
 	"github.com/go-ndn/mux"
@@ -21,14 +21,18 @@ func main() {
 	face := ndn.NewFace(conn, recv)
 	defer face.Close()
 
-	var key ndn.Key
-	pem, _ := ioutil.ReadFile("key/default.pri")
-	key.DecodePrivateKey(pem)
+	pem, err := os.Open("key/default.pri")
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	defer pem.Close()
+	key, _ := ndn.DecodePrivateKey(pem)
 
 	register := func(name string) {
 		ndn.SendControl(face, "rib", "register", &ndn.Parameters{
 			Name: ndn.NewName(name),
-		}, &key)
+		}, key)
 	}
 
 	register("/hello")
