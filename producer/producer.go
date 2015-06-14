@@ -51,6 +51,6 @@ func main() {
 			Content: []byte(time.Now().UTC().String()),
 		})
 	})
-	m.Handle("/file", mux.FileServer("/etc"), mux.PrefixTrimmer("/file"))
+	m.Handle("/file", mux.FileServer("/file", "/etc"))
 	m.Run(face, recv)
 }
