@@ -24,6 +24,10 @@ func main() {
 	f.Use(mux.Cacher)
 	f.Use(mux.Logger)
 	f.Use(mux.Assembler)
+	dec := mux.AESDecryptor([]byte("example key 1234"))
+	spew.Dump(f.Fetch(face, &ndn.Interest{Name: ndn.NewName("/hello")}, dec, mux.Gunzipper))
+	spew.Dump(f.Fetch(face, &ndn.Interest{Name: ndn.NewName("/file/machine-id")}, dec, mux.Gunzipper))
+
 	var rib []ndn.RIBEntry
 	tlv.UnmarshalByte(f.Fetch(face,
 		&ndn.Interest{
@@ -36,8 +40,4 @@ func main() {
 		128,
 	)
 	spew.Dump(rib)
-
-	dec := mux.AESDecryptor([]byte("example key 1234"))
-	spew.Dump(f.Fetch(face, &ndn.Interest{Name: ndn.NewName("/hello")}, dec, mux.Gunzipper))
-	spew.Dump(f.Fetch(face, &ndn.Interest{Name: ndn.NewName("/file/machine-id")}, dec, mux.Gunzipper))
 }
