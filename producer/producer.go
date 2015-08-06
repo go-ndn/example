@@ -39,6 +39,7 @@ func main() {
 	register("/file")
 
 	m := mux.New()
+	m.Use(mux.StaticFile("key/default.ndncert"))
 	m.Use(mux.Logger)
 	m.Use(mux.Gzipper)
 	m.Use(mux.AESEncryptor([]byte("example key 1234")))
