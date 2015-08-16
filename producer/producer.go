@@ -45,8 +45,6 @@ func main() {
 
 	// create an interest mux
 	m := mux.New()
-	// 7. publish public key file
-	m.Use(mux.StaticFile("key/default.ndncert"))
 	// 6. logging before the interest reaches a handler
 	m.Use(mux.Logger)
 	// 5. before encrypting it, zip it
@@ -70,7 +68,10 @@ func main() {
 	})
 
 	// also serve any file under /etc
-	m.Handle("/file", mux.FileServer("/file", "/etc"))
+	m.Handle(mux.FileServer("/file", "/etc"))
+
+	// publish public key file
+	m.Handle(mux.StaticFile("key/default.ndncert"))
 
 	// pump the face's incoming interests into the mux
 	m.Run(face, recv)
