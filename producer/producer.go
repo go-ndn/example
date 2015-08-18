@@ -33,16 +33,6 @@ func main() {
 	defer pem.Close()
 	key, _ := ndn.DecodePrivateKey(pem)
 
-	// a helper to register prefix on nfd
-	register := func(name string) {
-		ndn.SendControl(face, "rib", "register", &ndn.Parameters{
-			Name: ndn.NewName(name),
-		}, key)
-	}
-
-	register("/hello")
-	register("/file")
-
 	// create an interest mux
 	m := mux.New()
 	// 6. logging before the interest reaches a handler
@@ -74,5 +64,5 @@ func main() {
 	m.Handle(mux.StaticFile("key/default.ndncert"))
 
 	// pump the face's incoming interests into the mux
-	m.Run(face, recv)
+	m.Run(face, recv, key)
 }
