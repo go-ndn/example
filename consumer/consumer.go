@@ -30,15 +30,15 @@ func main() {
 	f.Use(mux.Cacher)
 	// 3. logging
 	f.Use(mux.Logger)
+	// see producer
 	// 4. assemble segments if the content has multiple segments
-	f.Use(mux.Assembler)
 	// 5. decrypt
 	dec := mux.AESDecryptor([]byte("example key 1234"))
 	// 6. unzip
 	// note: middleware can be both global and local to one handler
-	// see producer
-	spew.Dump(f.Fetch(face, &ndn.Interest{Name: ndn.NewName("/hello")}, dec, mux.Gunzipper))
-	spew.Dump(f.Fetch(face, &ndn.Interest{Name: ndn.NewName("/file/hosts")}, dec, mux.Gunzipper))
+	spew.Dump(f.Fetch(face, &ndn.Interest{Name: ndn.NewName("/ndn/guest/alice/1434508942077/KEY/%00%00")}))
+	spew.Dump(f.Fetch(face, &ndn.Interest{Name: ndn.NewName("/hello")}, mux.Assembler, dec, mux.Gunzipper))
+	spew.Dump(f.Fetch(face, &ndn.Interest{Name: ndn.NewName("/file/hosts")}, mux.Assembler, dec, mux.Gunzipper))
 
 	// see nfd
 	var rib []ndn.RIBEntry
@@ -48,7 +48,7 @@ func main() {
 			Selectors: ndn.Selectors{
 				MustBeFresh: true,
 			},
-		}),
+		}, mux.Assembler),
 		&rib,
 		128,
 	)

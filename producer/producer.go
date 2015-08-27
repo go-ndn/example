@@ -35,7 +35,9 @@ func main() {
 
 	// create an interest mux
 	m := mux.New()
-	// 6. logging before the interest reaches a handler
+	// 7. versioning
+	m.Use(mux.Versioner)
+	// 6. logging
 	m.Use(mux.Logger)
 	// 5. before encrypting it, zip it
 	m.Use(mux.Gzipper)
