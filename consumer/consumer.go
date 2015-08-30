@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+	"log"
 	"net"
 
 	"github.com/davecgh/go-spew/spew"
@@ -14,8 +14,7 @@ func main() {
 	// connect to nfd
 	conn, err := net.Dial("tcp", ":6363")
 	if err != nil {
-		fmt.Println(err)
-		return
+		log.Fatalln(err)
 	}
 	// start a new face but do not receive new interests
 	face := ndn.NewFace(conn, nil)

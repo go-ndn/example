@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+	"log"
 	"net"
 	"os"
 	"time"
@@ -15,8 +15,7 @@ func main() {
 	// connect to nfd
 	conn, err := net.Dial("tcp", ":6363")
 	if err != nil {
-		fmt.Println(err)
-		return
+		log.Fatalln(err)
 	}
 
 	// create a new face
@@ -27,8 +26,7 @@ func main() {
 	// read producer key
 	pem, err := os.Open("key/default.pri")
 	if err != nil {
-		fmt.Println(err)
-		return
+		log.Fatalln(err)
 	}
 	defer pem.Close()
 	key, _ := ndn.DecodePrivateKey(pem)
