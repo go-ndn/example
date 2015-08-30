@@ -2,18 +2,18 @@ package main
 
 import (
 	"log"
-	"net"
 	"os"
 	"time"
 
 	"github.com/go-ndn/mux"
 	"github.com/go-ndn/ndn"
+	"github.com/go-ndn/packet"
 	"github.com/go-ndn/persist"
 )
 
 func main() {
 	// connect to nfd
-	conn, err := net.Dial("tcp", ":6363")
+	conn, err := packet.Dial("tcp", ":6363")
 	if err != nil {
 		log.Fatalln(err)
 	}

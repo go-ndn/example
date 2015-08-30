@@ -2,17 +2,17 @@ package main
 
 import (
 	"log"
-	"net"
 
 	"github.com/davecgh/go-spew/spew"
 	"github.com/go-ndn/mux"
 	"github.com/go-ndn/ndn"
+	"github.com/go-ndn/packet"
 	"github.com/go-ndn/tlv"
 )
 
 func main() {
 	// connect to nfd
-	conn, err := net.Dial("tcp", ":6363")
+	conn, err := packet.Dial("tcp", ":6363")
 	if err != nil {
 		log.Fatalln(err)
 	}
