@@ -1,9 +1,8 @@
 package main
 
 import (
-	"log"
-
 	"github.com/davecgh/go-spew/spew"
+	"github.com/go-ndn/log"
 	"github.com/go-ndn/mux"
 	"github.com/go-ndn/ndn"
 	"github.com/go-ndn/packet"

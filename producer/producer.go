@@ -1,10 +1,10 @@
 package main
 
 import (
-	"log"
 	"os"
 	"time"
 
+	"github.com/go-ndn/log"
 	"github.com/go-ndn/mux"
 	"github.com/go-ndn/ndn"
 	"github.com/go-ndn/packet"
