@@ -1,4 +1,4 @@
-<p align="center"><img src="asset/logo.png"/></p>
+<p align="center"><img src="tutorial/logo.png"/></p>
 
 # What is "go-ndn"?
 
@@ -16,15 +16,24 @@ The key benefits are:
 If you have related questions, or need help to use go-ndn in your research/product, please contact `tailinchu <at> gmail <dot> com`. We welcome you to join the eco-system.
 
 ## News
+### 2015-10-13
 
-- 2015-09-13
-  - First public stable release `1.0`
+- Release `1.1`
+  - refactor `packet` and `tlv` package for significantly less memory allocation. ([before](bench/2015-09-13.svg) and [after](bench/2015-09-27.svg))
+  - experimental ndn certificate format
+  - new packet validation pipeline (with rsa, ecdsa, sha256, crc32c and hmac)
+- Tutorial
+  - [Verify Data Packet in go-ndn](verify.md)
+
+### 2015-09-13
+
+- First public stable release `1.0`
 
 # Create Your First NDN App
 
 This tutorial follows the `80-20 rule`; it will teach you 80% of go-ndn in 20% of the time. Let the hacking begin!
 
-<p align="center"><img src="asset/hacking.png"/></p>
+<p align="center"><img src="tutorial/hacking.png"/></p>
 
 ## Step 0: Install Go
 
@@ -132,7 +141,7 @@ Then you decide to segment your data content to 4096 bytes,
 
 Notice that the order of middleware matters; when interest comes, it first reaches cacher, segmentor, logger, and then the hello handler. The data packet then goes back in reverse order.
 
-![producer](asset/producer.png)
+![producer](tutorial/producer.png)
 
 Now you have a cool producer app ready, which has in-memory caching, packet segmentation and logging. We encourage you to discover more middleware in the `mux` package.
 
@@ -168,7 +177,7 @@ func main() {
 
 After a face is created, we create a __fetching pipeline__ with `mux.NewFetcher`. Notice that middleware also works for fetcher.
 
-![consumer](asset/consumer.png)
+![consumer](tutorial/consumer.png)
 
 If nfd and producer are already running in background, you will see this pretty-printed dump:
 
@@ -213,7 +222,7 @@ We first use fetcher to fetch `rib` dataset, then we pass the content, a pointer
 
 Here is the output:
 
-```
+```go
 ([]ndn.RIBEntry) (len=3 cap=4) {
  (ndn.RIBEntry) {
   Name: (ndn.Name) /file,
@@ -254,9 +263,8 @@ Here is the output:
 }
 ```
 
-## Step 3: Read the source code
+## Step 3: Read more tutorials and the source code
 
-Even if you already can create some cool NDN apps with `mux`, you still can learn more by reading the source code.
+- [Verify Data Packet in go-ndn](verify.md)
 
-The project is hosted on [`http://github.com/go-ndn`](http://github.com/go-ndn). Each package has its own README and full documentation on GoDoc; you can take a look at some _awesome_ implementations.
-
+Before we finish writing more tutorials about `mux`, you still can learn more by reading the source code. The project is hosted on [`http://github.com/go-ndn`](http://github.com/go-ndn). Each package has its own README and full documentation on GoDoc; you can take a look at some _awesome_ implementations.
