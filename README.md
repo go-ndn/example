@@ -21,7 +21,7 @@ If you have related questions, or need help to use go-ndn in your research/produ
 - Release `1.1`
   - refactor `packet` and `tlv` package for significantly less memory allocation. ([before](bench/2015-09-13.svg) and [after](bench/2015-09-27.svg))
   - experimental ndn certificate format
-  - new packet validation pipeline (with rsa, ecdsa, sha256, crc32c and hmac)
+  - update verify (rsa, ecdsa, sha256, crc32c and hmac) and encrypt (RSA-OAEP and AES-CTR) middleware
 - Tutorial
   - [Verify Data Packet in go-ndn](verify.md)
 

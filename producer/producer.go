@@ -40,7 +40,7 @@ func main() {
 	// 5. before encrypting it, zip it
 	m.Use(mux.Gzipper)
 	// 4. before segmenting it, encrypt it
-	m.Use(mux.AESEncryptor([]byte("example key 1234")))
+	m.Use(mux.Encryptor(key.(*ndn.RSAKey)))
 	// 3. if the data packet is too large, segment it
 	m.Use(mux.Segmentor(10))
 	// 2. reply the interest with the on-disk cache
