@@ -24,9 +24,9 @@ fetcher.Use(mux.Verifier(
 ))
 ```
 
-Every rule has `DataPattern`, which will match against data name. This pattern syntax documentation can be found on [Google RE2](https://github.com/google/re2/wiki/Syntax). Notice that this more expressive pattern syntax is __not compatible__ with [NDN Regular Expression](http://named-data.net/doc/ndn-cxx/current/tutorials/utils-ndn-regex.html).
+Every rule has `DataPattern`, which will match against data name. This pattern syntax documentation can be found on [Google RE2](https://github.com/google/re2/wiki/Syntax). Notice that this syntax is __not compatible__ with [NDN Regular Expression](http://named-data.net/doc/ndn-cxx/current/tutorials/utils-ndn-regex.html).
 
-Then if `KeyPattern` exists, `Verifier` will use _captures_ from `DataPattern`, and compiles a new regexp to match against key locator name. The key will be fetched and verifies the current data packet. This whole process is done recursively on the key. Finally, we will match some anchor rule, which has `DataSHA256`.
+Then if `KeyPattern` exists, `Verifier` will use _captures_ from `DataPattern`, and compiles a new regexp to match against key locator name. The key will be fetched to verify the current data packet. This whole process is done recursively on the key. Finally, we will match some anchor rule, which has `DataSHA256`.
 
 ```go
 &mux.VerifyRule{
@@ -48,5 +48,5 @@ If you don't want to fetch keys from remote every time, you can add more middlew
 - `persist.Cacher`: uses on-disk mmap packet store
 - `mux.Cacher`: uses in-memory lru packet store
 
-> Verification in mux is designed to __block__ because each interest is already handled in a separate goroutine. After [Go 1.5](https://golang.org/doc/go1.5), your application throughput should be maximaxed because by default, Go programs run with GOMAXPROCS set to the number of cores available; in prior releases it defaulted to 1.
+> Verification in mux is designed to __block__ because each interest is already handled in a separate goroutine. After [Go 1.5](https://golang.org/doc/go1.5), your application throughput should be maximized because by default, Go programs run with GOMAXPROCS set to the number of cores available; in prior releases it defaulted to 1.
 

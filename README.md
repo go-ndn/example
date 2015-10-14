@@ -16,7 +16,7 @@ The key benefits are:
 If you have related questions, or need help to use go-ndn in your research/product, please contact `tailinchu <at> gmail <dot> com`. We welcome you to join the eco-system.
 
 ## News
-### 2015-10-13
+### 2015-10-15
 
 - Release `1.1`
   - refactor `packet` and `tlv` package for significantly less memory allocation. ([before](bench/2015-09-13.svg) and [after](bench/2015-09-27.svg))
@@ -24,6 +24,7 @@ If you have related questions, or need help to use go-ndn in your research/produ
   - update verify (rsa, ecdsa, sha256, crc32c and hmac) and encrypt (RSA-OAEP and AES-CTR) middleware
 - Tutorial
   - [Verify Data Packet in go-ndn](verify.md)
+  - [Per-route Middleware and Encryption](per-route.md)
 
 ### 2015-09-13
 
@@ -218,7 +219,7 @@ Here is an example that shows how to parse `rib` dataset.
 	spew.Dump(rib)
 ```
 
-We first use fetcher to fetch `rib` dataset, then we pass the content, a pointer to some go variable, and the outermost type number to `tlv.UnmarshalByte`.
+We first use fetcher to fetch `rib` dataset, then we pass the content, a pointer to a variable, and the outermost type number to `tlv.UnmarshalByte`.
 
 Here is the output:
 
@@ -266,5 +267,6 @@ Here is the output:
 ## Step 3: Read more tutorials and the source code
 
 - [Verify Data Packet in go-ndn](verify.md)
+- [Per-route Middleware and Encryption](per-route.md)
 
 Before we finish writing more tutorials about `mux`, you still can learn more by reading the source code. The project is hosted on [`http://github.com/go-ndn`](http://github.com/go-ndn). Each package has its own README and full documentation on GoDoc; you can take a look at some _awesome_ implementations.
