@@ -33,10 +33,10 @@ func main() {
 
 	// create an interest mux
 	m := mux.New()
-	// 7. versioning
-	m.Use(mux.Versioner)
-	// 6. logging
+	// 7. logging
 	m.Use(mux.Logger)
+	// 6. versioning
+	m.Use(mux.Versioner)
 	// 5. before encrypting it, zip it
 	m.Use(mux.Gzipper)
 	// 4. before segmenting it, encrypt it
@@ -48,6 +48,7 @@ func main() {
 	// 1. reply the interest with the in-memory cache
 	m.Use(mux.Cacher)
 	// 0. an interest packet comes
+	m.Use(mux.Queuer)
 
 	// serve hello message
 	m.HandleFunc("/hello", func(w ndn.Sender, i *ndn.Interest) {
