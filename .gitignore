@@ -1,3 +1,4 @@
 producer/producer
 producer/test.db
+producer/health.db
 consumer/consumer
