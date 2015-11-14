@@ -16,6 +16,15 @@ The key benefits are:
 If you have related questions, or need help to use go-ndn in your research/product, please contact `tailinchu <at> gmail <dot> com`. We welcome you to join the eco-system.
 
 ## News
+
+### 2015-11-17 (pending)
+
+- Release `1.1.1`
+  - add go-ndn node [health monitoring tool](https://github.com/go-ndn/health)
+  - refactor go-nfd middleware (Oli Gavin)
+  - fix tlv cannot unmarshal time.Time (reported by qhsong)
+  - fix stale data in go-nfd content store (reported by Mahyuddin Husairi)
+
 ### 2015-10-15
 
 - Release `1.1`
