@@ -17,13 +17,15 @@ If you have related questions, or need help to use go-ndn in your research/produ
 
 ## News
 
-### 2015-11-17 (pending)
+### next
 
 - Release `1.1.1`
   - add go-ndn node [health monitoring tool](https://github.com/go-ndn/health)
   - refactor go-nfd middleware (Oli Gavin)
   - fix tlv cannot unmarshal time.Time (reported by qhsong)
   - fix stale data in go-nfd content store (reported by Mahyuddin Husairi)
+- Tutorial
+  - [Publish Pre-generated Data Packets](publish.md)
 
 ### 2015-10-15
 
@@ -277,5 +279,6 @@ Here is the output:
 
 - [Verify Data Packet in go-ndn](verify.md)
 - [Per-route Middleware and Encryption](per-route.md)
+- [Publish Pre-generated Data Packets](publish.md)
 
 Before we finish writing more tutorials about `mux`, you still can learn more by reading the source code. The project is hosted on [`http://github.com/go-ndn`](http://github.com/go-ndn). Each package has its own README and full documentation on GoDoc; you can take a look at some _awesome_ implementations.
