@@ -50,7 +50,7 @@ func main() {
 
 	// see nfd
 	var rib []ndn.RIBEntry
-	tlv.UnmarshalByte(f.Fetch(face,
+	tlv.Unmarshal(f.Fetch(face,
 		&ndn.Interest{
 			Name: ndn.NewName("/localhop/nfd/rib/list"),
 			Selectors: ndn.Selectors{
