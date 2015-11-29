@@ -19,13 +19,14 @@ If you have related questions, or need help to use go-ndn in your research/produ
 
 ### next
 
-- Release `1.1.1`
+- Release `1.2`
+  - __ndn "send/push" semantics__ (Oli Gavin): This is an experimental protocol based on interest pattern `<nodeName>/ACK/<dataName>`. A producer will use this interest pattern to ensure that a specific node receives a specific data packet (see `mux.Notifier` and `mux.Listener`).
   - add go-ndn node [health monitoring tool](https://github.com/go-ndn/health)
   - refactor go-nfd middleware (Oli Gavin)
   - fix tlv cannot unmarshal time.Time (reported by qhsong)
   - fix stale data in go-nfd content store (reported by Mahyuddin Husairi)
 - Tutorial
-  - [Publish Pre-generated Data Packets](publish.md)
+  - [Generate Data Before Interest](before-interest.md)
 
 ### 2015-10-15
 
@@ -279,6 +280,6 @@ Here is the output:
 
 - [Verify Data Packet in go-ndn](verify.md)
 - [Per-route Middleware and Encryption](per-route.md)
-- [Publish Pre-generated Data Packets](publish.md)
+- [Generate Data Before Interest](before-interest.md)
 
 Before we finish writing more tutorials about `mux`, you still can learn more by reading the source code. The project is hosted on [`http://github.com/go-ndn`](http://github.com/go-ndn). Each package has its own README and full documentation on GoDoc; you can take a look at some _awesome_ implementations.
