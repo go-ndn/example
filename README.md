@@ -20,13 +20,14 @@ If you have related questions, or need help to use go-ndn in your research/produ
 ### next
 
 - Release `1.3`
+  - [Raft distributed consensus protocol with NDN transport](https://github.com/go-ndn/raft)
   - optimize scheduled pit removal
   - optimize lpm object allocation
 
 ### 2015-11-28
 
 - Release `1.2`
-  - __ndn "send/push" semantics__ (Oli Gavin): This is an experimental protocol based on interest pattern `<nodeName>/ACK/<dataName>`. A producer will use this interest pattern to ensure that a specific node receives a specific data packet (see `mux.Notifier` and `mux.Listener`).
+  - __ndn "send/push" semantics__ (Oli Gavin): This is an experimental protocol based on interest pattern `<nodeName>/ACK/<dataName>`. A producer will use this interest pattern to ensure that a specific node receives a specific data packet (see `mux.Notify` and `mux.Listener`).
   - add go-ndn node [health monitoring tool](https://github.com/go-ndn/health)
   - refactor go-nfd middleware (Oli Gavin)
   - fix tlv cannot unmarshal time.Time (reported by qhsong)
