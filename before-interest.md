@@ -3,6 +3,7 @@
 Remember, `mux` is a reactive framework; it assumes that data packet is produced on interest. However sometimes we want to pre-generate data packets. There are two ways to do this with `mux`:
 
 1. Directly add data packets to content store
+2. Use `mux.Publisher`
 
 ## Idea 1: Directly Add Data Packet to Content Store
 
@@ -29,4 +30,21 @@ m := mux.New()
 // marshals and unmarshals data packet to bytes
 m.Use(mux.RawCacher(c, false))
 ...
+```
+
+## Idea 2: Use `mux.Publisher`
+
+This is an extension to idea 1 by using existing middleware to post-process data.
+
+```go
+// create a publisher with cache
+publisher := mux.NewPublisher(c)
+
+// compress
+publisher.Use(mux.Gzipper)
+// after compress, segment
+publisher.Use(mux.Segmentor(10))
+
+// this blob will be compressed and then segmented
+publisher.Publish(blob)
 ```

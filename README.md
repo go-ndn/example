@@ -23,6 +23,7 @@ If you have related questions, or need help to use go-ndn in your research/produ
   - [Raft distributed consensus protocol with NDN transport](https://github.com/go-ndn/raft)
   - optimize scheduled pit removal
   - optimize lpm object allocation
+  - add `mux.Publisher` to push data to content store with middleware
 
 ### 2015-11-28
 
