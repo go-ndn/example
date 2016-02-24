@@ -19,6 +19,10 @@ If you have related questions, or need help to use go-ndn in your research/produ
 
 ### next
 
+- [go-ndn TLV extension](tlv-extension.md)
+
+### 2016-02-21
+
 - Release `1.3`
   - [Raft distributed consensus protocol with NDN transport](https://github.com/go-ndn/raft)
   - optimize scheduled pit removal
