@@ -1,4 +1,4 @@
-# Verify Data Packet in go-ndn
+# Verify Data Packet
 
 > NDN new certificate format uses __pure__ data packet tlv with additional _ValidityPeriod_ and some other fields. go-ndn adopts it early, so both this tutorial and the code are based on the new certificate format.
 

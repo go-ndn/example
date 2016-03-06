@@ -38,7 +38,7 @@ If you have related questions, or need help to use go-ndn in your research/produ
   - fix tlv cannot unmarshal time.Time (reported by qhsong)
   - fix stale data in go-nfd content store (reported by Mahyuddin Husairi)
 - Tutorial
-  - [Generate Data Before Interest](before-interest.md)
+  - [Generate Data Before Interest](publish.md)
 
 ### 2015-10-15
 
@@ -47,8 +47,8 @@ If you have related questions, or need help to use go-ndn in your research/produ
   - experimental ndn certificate format
   - update verify (rsa, ecdsa, sha256, crc32c and hmac) and encrypt (RSA-OAEP and AES-CTR) middleware
 - Tutorial
-  - [Verify Data Packet in go-ndn](verify.md)
-  - [Per-route Middleware and Encryption](per-route.md)
+  - [Verify Data Packet](verify.md)
+  - [Encrypt Data Packet](encrypt.md)
 
 ### 2015-09-13
 
@@ -290,8 +290,8 @@ Here is the output:
 
 ## Step 3: Read more tutorials and the source code
 
-- [Verify Data Packet in go-ndn](verify.md)
-- [Per-route Middleware and Encryption](per-route.md)
-- [Generate Data Before Interest](before-interest.md)
+- [Verify Data Packet](verify.md)
+- [Encrypt Data Packet](encrypt.md)
+- [Generate Data Before Interest](publish.md)
 
 Before we finish writing more tutorials about `mux`, you still can learn more by reading the source code. The project is hosted on [`http://github.com/go-ndn`](http://github.com/go-ndn). Each package has its own README and full documentation on GoDoc; you can take a look at some _awesome_ implementations.

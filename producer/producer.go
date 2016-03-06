@@ -45,7 +45,7 @@ func main() {
 	// 5. before encrypting it, zip it
 	m.Use(mux.Gzipper)
 	// 4. before segmenting it, encrypt it
-	m.Use(mux.Encryptor(key.(*ndn.RSAKey)))
+	m.Use(mux.Encryptor("/producer/encrypt", key.(*ndn.RSAKey)))
 	// 3. if the data packet is too large, segment it
 	m.Use(mux.Segmentor(10))
 	// 2. reply the interest with the on-disk cache
@@ -56,6 +56,9 @@ func main() {
 	m.Use(mux.Queuer)
 
 	m.Use(health.Logger("health", "health.db"))
+
+	// serve encryption key from cache
+	m.HandleFunc("/producer/encrypt", func(w ndn.Sender, i *ndn.Interest) {})
 
 	// serve hello message
 	m.HandleFunc("/hello", func(w ndn.Sender, i *ndn.Interest) {
