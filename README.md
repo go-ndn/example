@@ -230,7 +230,7 @@ Here is an example that shows how to parse `rib` dataset.
 	}
 
 	var rib []ndn.RIBEntry
-	tlv.UnmarshalByte(f.Fetch(face,
+	tlv.Unmarshal(f.Fetch(face,
 		&ndn.Interest{
 			Name: ndn.NewName("/localhop/nfd/rib/list"),
 			Selectors: ndn.Selectors{
@@ -243,7 +243,7 @@ Here is an example that shows how to parse `rib` dataset.
 	spew.Dump(rib)
 ```
 
-We first use fetcher to fetch `rib` dataset, then we pass the content, a pointer to a variable, and the outermost type number to `tlv.UnmarshalByte`.
+We first use fetcher to fetch `rib` dataset, then we pass the content, a pointer to a variable, and the outermost type number to `tlv.Unmarshal`.
 
 Here is the output:
 

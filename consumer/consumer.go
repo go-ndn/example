@@ -39,11 +39,10 @@ func main() {
 	// 3. logging
 	f.Use(mux.Logger)
 	// see producer
+	dec := mux.Decryptor(key.(*ndn.RSAKey))
 	// 4. assemble segments if the content has multiple segments
 	// 5. decrypt
-	dec := mux.Decryptor(key.(*ndn.RSAKey))
 	// 6. unzip
-	// note: middleware can be both global and local to one handler
 	spew.Dump(f.Fetch(face, &ndn.Interest{Name: ndn.NewName("/ndn/guest/alice/1434508942077/KEY/%00%00")}))
 	spew.Dump(f.Fetch(face, &ndn.Interest{Name: ndn.NewName("/hello")}, mux.Assembler, dec, mux.Gunzipper))
 	spew.Dump(f.Fetch(face, &ndn.Interest{Name: ndn.NewName("/file/hosts")}, mux.Assembler, dec, mux.Gunzipper))
