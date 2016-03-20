@@ -20,6 +20,8 @@ If you have related questions, or need help to use go-ndn in your research/produ
 ### next
 
 - [go-ndn TLV extension](tlv-extension.md)
+- support implicit digest lookup
+- optimize persist content store
 
 ### 2016-02-21
 
