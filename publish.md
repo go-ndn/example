@@ -18,7 +18,7 @@ To publish data, you need to create one ndn.Cache. In this case, we choose to us
 ```go
 // create new cache
 // With this cache `c`, you can publish data packets from any go-routine.
-c := persist.NewCache("published.db")
+c := persist.New("published.db")
 
 // publish data
 c.Add(chunk1)
