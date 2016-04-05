@@ -22,6 +22,7 @@ If you have related questions, or need help to use go-ndn in your research/produ
 - [go-ndn TLV extension](tlv-extension.md)
 - support implicit digest lookup
 - optimize persist content store
+- reduce lpm memory usage
 
 ### 2016-02-21
 
