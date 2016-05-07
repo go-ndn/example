@@ -23,6 +23,7 @@ If you have related questions, or need help to use go-ndn in your research/produ
 - support implicit digest lookup
 - optimize persist content store
 - reduce lpm memory usage
+- support udp multicast
 
 ### 2016-02-21
 
