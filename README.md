@@ -20,6 +20,8 @@ If you have related questions, or need help to use go-ndn in your research/produ
 ### next
 
 - [go-ndn TLV extension](tlv-extension.md)
+- use `mux.Verifier` in go-nfd
+- remove `log.Fatalln`
 
 ### 2016-08-18
 
@@ -91,7 +93,8 @@ func main() {
 	// connect to nfd
 	conn, err := packet.Dial("tcp", ":6363")
 	if err != nil {
-		log.Fatalln(err)
+		log.Println(err)
+		return
 	}
 
 	// create a new face
@@ -102,7 +105,8 @@ func main() {
 	// read producer key
 	pem, err := os.Open("key/default.pri")
 	if err != nil {
-		log.Fatalln(err)
+		log.Println(err)
+		return
 	}
 	defer pem.Close()
 	key, _ := ndn.DecodePrivateKey(pem)
@@ -188,7 +192,8 @@ func main() {
 	// connect to nfd
 	conn, err := packet.Dial("tcp", ":6363")
 	if err != nil {
-		log.Fatalln(err)
+		log.Println(err)
+		return
 	}
 	// start a new face but do not receive new interests
 	face := ndn.NewFace(conn, nil)

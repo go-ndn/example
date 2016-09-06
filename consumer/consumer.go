@@ -15,7 +15,8 @@ func main() {
 	// connect to nfd
 	conn, err := packet.Dial("tcp", ":6363")
 	if err != nil {
-		log.Fatalln(err)
+		log.Println(err)
+		return
 	}
 	// start a new face but do not receive new interests
 	face := ndn.NewFace(conn, nil)
@@ -24,7 +25,8 @@ func main() {
 	// read producer key
 	pem, err := os.Open("../producer/key/default.pri")
 	if err != nil {
-		log.Fatalln(err)
+		log.Println(err)
+		return
 	}
 	defer pem.Close()
 	key, _ := ndn.DecodePrivateKey(pem)
