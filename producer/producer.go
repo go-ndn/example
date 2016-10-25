@@ -1,11 +1,9 @@
 package main
 
 import (
-	"net/http"
 	"os"
 	"time"
 
-	"github.com/go-ndn/health"
 	"github.com/go-ndn/log"
 	"github.com/go-ndn/mux"
 	"github.com/go-ndn/ndn"
@@ -14,9 +12,6 @@ import (
 )
 
 func main() {
-	// health monitor
-	go http.ListenAndServe("localhost:8081", nil)
-
 	// connect to nfd
 	conn, err := packet.Dial("tcp", ":6363")
 	if err != nil {
@@ -56,8 +51,6 @@ func main() {
 	m.Use(mux.Cacher)
 	// 0. an interest packet comes
 	m.Use(mux.Queuer)
-
-	m.Use(health.Logger("health", "health.db"))
 
 	// serve encryption key from cache
 	m.HandleFunc("/producer/encrypt", func(w ndn.Sender, i *ndn.Interest) {})

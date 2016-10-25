@@ -22,6 +22,7 @@ If you have related questions, or need help to use go-ndn in your research/produ
 - [go-ndn TLV extension](tlv-extension.md)
 - use `mux.Verifier` in go-nfd
 - remove `log.Fatalln`
+- replace `health.Logger` with `health.InfluxDB`
 
 ### 2016-08-18
 
