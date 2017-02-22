@@ -20,6 +20,10 @@ If you have related questions, or need help to use go-ndn in your research/produ
 ### next
 
 - [go-ndn TLV extension](tlv-extension.md)
+
+### 2017-02-22
+
+- replace the core raft implementation with [etcd/raft](https://github.com/coreos/etcd/tree/master/raft) from core os
 - use `mux.Verifier` in go-nfd
 - remove `log.Fatalln`
 - replace `health.Logger` with `health.InfluxDB`
