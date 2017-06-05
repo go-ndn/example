@@ -20,6 +20,7 @@ If you have related questions, or need help to use go-ndn in your research/produ
 ### next
 
 - [go-ndn TLV extension](tlv-extension.md)
+- move "go-ndn/health" to a private project
 
 ### 2017-02-22
 
