@@ -148,8 +148,8 @@ Now we have a producer that responds `/hello` interest with a UTC time string.
 
 ```go
 type Sender interface {
-	SendInterest(*Interest) <-chan *Data
-	SendData(*Data)
+	SendInterest(*Interest) (*Data, error)
+	SendData(*Data) error
 }
 ```
 
