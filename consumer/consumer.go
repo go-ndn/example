@@ -49,17 +49,20 @@ func main() {
 	spew.Dump(f.Fetch(face, &ndn.Interest{Name: ndn.NewName("/hello")}, mux.Assembler, dec, mux.Gunzipper))
 	spew.Dump(f.Fetch(face, &ndn.Interest{Name: ndn.NewName("/file/hosts")}, mux.Assembler, dec, mux.Gunzipper))
 
-	// see nfd
-	var rib []ndn.RIBEntry
-	tlv.Unmarshal(f.Fetch(face,
+	content, err := f.Fetch(face,
 		&ndn.Interest{
 			Name: ndn.NewName("/localhop/nfd/rib/list"),
 			Selectors: ndn.Selectors{
 				MustBeFresh: true,
 			},
-		}, mux.Assembler),
-		&rib,
-		128,
-	)
+		}, mux.Assembler)
+	if err != nil {
+		log.Println(err)
+		return
+	}
+
+	// see nfd
+	var rib []ndn.RIBEntry
+	tlv.Unmarshal(content, &rib, 128)
 	spew.Dump(rib)
 }

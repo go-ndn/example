@@ -135,8 +135,8 @@ Finally, we create a mux, which sends incoming interests to corresponding handle
 
 ```go
 	// serve hello message
-	m.HandleFunc("/hello", func(w ndn.Sender, i *ndn.Interest) {
-		w.SendData(&ndn.Data{
+	m.HandleFunc("/hello", func(w ndn.Sender, i *ndn.Interest) error {
+		return w.SendData(&ndn.Data{
 			Name:    ndn.NewName("/hello"),
 			Content: []byte(time.Now().UTC().String()),
 		})
@@ -248,17 +248,20 @@ Here is an example that shows how to parse `rib` dataset.
 		Route []Route `tlv:"129"`
 	}
 
-	var rib []ndn.RIBEntry
-	tlv.Unmarshal(f.Fetch(face,
+	content, err := f.Fetch(face,
 		&ndn.Interest{
 			Name: ndn.NewName("/localhop/nfd/rib/list"),
 			Selectors: ndn.Selectors{
 				MustBeFresh: true,
 			},
-		}, mux.Assembler),
-		&rib,
-		128,
-	)
+		}, mux.Assembler)
+	if err != nil {
+		log.Println(err)
+		return
+	}
+
+	var rib []ndn.RIBEntry
+	tlv.Unmarshal(content, &rib, 128)
 	spew.Dump(rib)
 ```
 

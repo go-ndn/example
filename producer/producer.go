@@ -53,11 +53,11 @@ func main() {
 	m.Use(mux.Queuer)
 
 	// serve encryption key from cache
-	m.HandleFunc("/producer/encrypt", func(w ndn.Sender, i *ndn.Interest) {})
+	m.HandleFunc("/producer/encrypt", func(w ndn.Sender, i *ndn.Interest) error { return nil })
 
 	// serve hello message
-	m.HandleFunc("/hello", func(w ndn.Sender, i *ndn.Interest) {
-		w.SendData(&ndn.Data{
+	m.HandleFunc("/hello", func(w ndn.Sender, i *ndn.Interest) error {
+		return w.SendData(&ndn.Data{
 			Name:    ndn.NewName("/hello"),
 			Content: []byte(time.Now().UTC().String()),
 		})
