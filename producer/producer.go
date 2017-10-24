@@ -4,18 +4,18 @@ import (
 	"os"
 	"time"
 
-	"github.com/go-ndn/log"
 	"github.com/go-ndn/mux"
 	"github.com/go-ndn/ndn"
 	"github.com/go-ndn/packet"
 	"github.com/go-ndn/persist"
+	"github.com/sirupsen/logrus"
 )
 
 func main() {
 	// connect to nfd
 	conn, err := packet.Dial("tcp", ":6363")
 	if err != nil {
-		log.Println(err)
+		logrus.Error(err)
 		return
 	}
 
@@ -27,7 +27,7 @@ func main() {
 	// read producer key
 	pem, err := os.Open("key/default.pri")
 	if err != nil {
-		log.Println(err)
+		logrus.Error(err)
 		return
 	}
 	defer pem.Close()

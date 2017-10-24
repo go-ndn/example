@@ -57,14 +57,15 @@ const (
 )
 ```
 
-## CacheHint
+## CacheControl
 
-This specifies how producer wants each node to cache data. There are many kinds of data packets that have little value to be cached; for those kinds, producer is encouraged to use `NoCache` to let intermediate nodes reserve cache space for other useful packets.
+This specifies caching strategy for data packets. The usage is similar to http [Cache-Control](https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching#defining_optimal_cache-control_policy).
 
 ```go
 const (
-	CacheHintNone    uint64 = 0
-	CacheHintNoCache        = 1
+	CacheControlPublic  uint64 = 0
+	CacheControlNoStore        = 1
+	CacheControlPrivate        = 2
 )
 ```
 

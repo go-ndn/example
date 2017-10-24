@@ -4,18 +4,18 @@ import (
 	"os"
 
 	"github.com/davecgh/go-spew/spew"
-	"github.com/go-ndn/log"
 	"github.com/go-ndn/mux"
 	"github.com/go-ndn/ndn"
 	"github.com/go-ndn/packet"
 	"github.com/go-ndn/tlv"
+	"github.com/sirupsen/logrus"
 )
 
 func main() {
 	// connect to nfd
 	conn, err := packet.Dial("tcp", ":6363")
 	if err != nil {
-		log.Println(err)
+		logrus.Error(err)
 		return
 	}
 	// start a new face but do not receive new interests
@@ -25,7 +25,7 @@ func main() {
 	// read producer key
 	pem, err := os.Open("../producer/key/default.pri")
 	if err != nil {
-		log.Println(err)
+		logrus.Error(err)
 		return
 	}
 	defer pem.Close()
@@ -57,7 +57,7 @@ func main() {
 			},
 		}, mux.Assembler)
 	if err != nil {
-		log.Println(err)
+		logrus.Error(err)
 		return
 	}
 

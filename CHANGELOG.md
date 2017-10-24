@@ -3,6 +3,8 @@
 - [go-ndn TLV extension](tlv-extension.md)
 - propagate errors from `ndn.Sender` and `mux.Handler`
 - add dockerfiles and [docker images](https://hub.docker.com/u/gondn/) for nfd and bridge
+- replace go-ndn/log with logrus for structured logging
+- rewrite go-ndn/bridge
 - move "go-ndn/health" to a private project
 
 ### 2017-02-22
